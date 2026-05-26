@@ -3,42 +3,252 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Terms & Conditions — Elunimy</title>
+  <title>Terms &amp; Conditions — Elunimy</title>
   <style>
-    html, body { background-color: transparent; }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif;
-      padding: 1.25em 1.25em 3.5em;
-      max-width: 600px;
-      margin: 0 auto;
-      line-height: 1.65;
-      color: #CBD5E1;
-      font-size: 15px;
-      -webkit-font-smoothing: antialiased;
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      min-height: 100%;
+      background: #010610;
     }
-    h1 { font-size: 1.75em; margin-bottom: 0.25em; text-align: center; font-weight: 700; color: #F1F5F9; letter-spacing: -0.4px; }
-    h2 { font-size: 1.05em; margin-top: 1.8em; font-weight: 600; color: #E2E8F0; letter-spacing: -0.2px; }
-    h3 { font-size: 0.95em; margin-top: 1.2em; font-weight: 600; color: #E2E8F0; }
-    strong { color: #F1F5F9; }
-    a { color: #60A5FA; text-decoration: none; }
-    a:hover { color: #93C5FD; }
-    ul { margin-left: 1em; }
-    ul li { margin-bottom: 0.3em; }
-    hr { border: none; border-top: 1px solid #1E293B; margin: 2em 0 1em; }
-    .effective { color: #64748B; font-style: italic; text-align: center; font-size: 0.9em; }
+
+    body {
+      min-height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      color: #b8cfe8;
+      font-size: 15px;
+      line-height: 1.68;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Aurora background layer */
+    .aurora {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .aurora-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(72px);
+    }
+
+    .aurora-orb-1 {
+      width: 70vw;
+      height: 70vw;
+      top: -20%;
+      left: -15%;
+      background: radial-gradient(circle, rgba(30, 64, 175, 0.22) 0%, transparent 65%);
+      animation: drift1 20s ease-in-out infinite alternate;
+    }
+
+    .aurora-orb-2 {
+      width: 55vw;
+      height: 55vw;
+      bottom: -15%;
+      right: -10%;
+      background: radial-gradient(circle, rgba(14, 116, 144, 0.15) 0%, transparent 65%);
+      animation: drift2 26s ease-in-out infinite alternate;
+    }
+
+    .aurora-orb-3 {
+      width: 45vw;
+      height: 45vw;
+      top: 35%;
+      left: 25%;
+      background: radial-gradient(circle, rgba(55, 48, 163, 0.12) 0%, transparent 65%);
+      animation: drift3 30s ease-in-out infinite alternate;
+    }
+
+    .aurora-orb-4 {
+      width: 35vw;
+      height: 35vw;
+      top: 10%;
+      right: 5%;
+      background: radial-gradient(circle, rgba(15, 52, 120, 0.18) 0%, transparent 65%);
+      animation: drift4 17s ease-in-out infinite alternate;
+    }
+
+    @keyframes drift1 {
+      from { transform: translate(0, 0) scale(1); }
+      to   { transform: translate(6vw, 10vh) scale(1.12); }
+    }
+    @keyframes drift2 {
+      from { transform: translate(0, 0) scale(1); }
+      to   { transform: translate(-5vw, -8vh) scale(1.09); }
+    }
+    @keyframes drift3 {
+      from { transform: translate(0, 0) scale(1); }
+      to   { transform: translate(4vw, -12vh) scale(0.93); }
+    }
+    @keyframes drift4 {
+      from { transform: translate(0, 0) scale(1); }
+      to   { transform: translate(-3vw, 7vh) scale(1.06); }
+    }
+
+    /* Glass shimmer overlay */
+    .aurora::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.012) 0%, transparent 50%),
+        linear-gradient(225deg, rgba(30,80,200,0.05) 0%, transparent 50%);
+    }
+
+    /* Page layout */
+    .page {
+      position: relative;
+      z-index: 1;
+      max-width: 660px;
+      margin: 0 auto;
+      padding: 2.5em 1.25em 5em;
+    }
+
+    /* Glass card */
+    .glass-card {
+      background: rgba(4, 14, 36, 0.72);
+      backdrop-filter: blur(32px) saturate(160%);
+      -webkit-backdrop-filter: blur(32px) saturate(160%);
+      border-radius: 22px;
+      border: 1px solid rgba(255, 255, 255, 0.065);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.07),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.3),
+        0 32px 100px rgba(0, 0, 0, 0.65),
+        0 0 80px rgba(20, 60, 180, 0.07);
+      padding: 2.75em 2.25em 2.75em;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Inner glass sheen */
+    .glass-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.12) 30%, rgba(180,210,255,0.15) 60%, transparent 100%);
+    }
+
+    /* Typography */
+    h1 {
+      font-size: 1.9em;
+      font-weight: 700;
+      color: #edf4ff;
+      letter-spacing: -0.5px;
+      text-align: center;
+      line-height: 1.2;
+      margin-bottom: 0.3em;
+    }
+
+    .effective {
+      color: #3d5a7a;
+      font-style: italic;
+      text-align: center;
+      font-size: 0.85em;
+      padding-bottom: 1.75em;
+      margin-bottom: 0.25em;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.045);
+    }
+
+    .effective strong {
+      color: #4e6e96;
+      font-style: normal;
+    }
+
+    h2 {
+      font-size: 0.97em;
+      font-weight: 600;
+      color: #c8dcf5;
+      letter-spacing: -0.1px;
+      margin-top: 2.2em;
+      margin-bottom: 0.6em;
+      padding-bottom: 0.45em;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.048);
+    }
+
+    h3 {
+      font-size: 0.9em;
+      font-weight: 600;
+      color: #8aaed4;
+      margin-top: 1.4em;
+      margin-bottom: 0.4em;
+    }
+
+    p {
+      font-size: 0.92em;
+      line-height: 1.72;
+      margin-bottom: 0.75em;
+      color: #a8c0dc;
+    }
+
+    ul {
+      margin: 0.3em 0 0.8em 1.1em;
+      padding: 0;
+    }
+
+    ul li {
+      font-size: 0.91em;
+      line-height: 1.68;
+      margin-bottom: 0.38em;
+      color: #a0b8d6;
+    }
+
+    strong { color: #ddeeff; font-weight: 600; }
+
+    a {
+      color: #5a9eff;
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+    a:hover { color: #85bbff; }
+
+    hr {
+      border: none;
+      border-top: 1px solid rgba(255, 255, 255, 0.045);
+      margin: 2.2em 0 1.2em;
+    }
+
+    /* Notice box */
     .notice {
-      background-color: rgba(13, 25, 41, 0.8);
-      border-left: 3px solid #3B82F6;
-      padding: 0.85em 1em;
+      background: rgba(20, 55, 120, 0.18);
+      border-left: 2px solid rgba(90, 158, 255, 0.45);
+      border-radius: 10px;
+      padding: 1em 1.15em;
       margin: 1.2em 0;
-      border-radius: 6px;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    .notice p {
+      margin-bottom: 0;
+      color: #a8c0dc;
     }
   </style>
 </head>
 <body>
 
+<div class="aurora">
+  <div class="aurora-orb aurora-orb-1"></div>
+  <div class="aurora-orb aurora-orb-2"></div>
+  <div class="aurora-orb aurora-orb-3"></div>
+  <div class="aurora-orb aurora-orb-4"></div>
+</div>
+
+<div class="page">
+  <div class="glass-card">
+
 <h1>Terms &amp; Conditions</h1>
-<p class="effective"><strong>Last updated: May 12, 2026</strong></p>
+<p class="effective"><strong>Last updated: May 26, 2026</strong></p>
 
 <p>These Terms and Conditions ("Terms") govern your access to and use of the Elunimy mobile application ("Application", "Service", "we", "us", or "our"), developed and operated by Andrej Veremčiuk (hereinafter referred to as "Service Provider"). Please read these Terms carefully before using the Application.</p>
 
@@ -47,13 +257,13 @@
 <p>These Terms constitute a legally binding agreement between you and the Service Provider.</p>
 
 <h2>2. About the Service</h2>
-<p>Elunimy is an AI-powered decision-support tool designed to help users obtain clear, practical guidance for everyday situations. The Application uses artificial intelligence to analyze user queries, uploaded images, and other input provided by users, and to generate responses based on that input.</p>
-<p>The Application is <strong>not</strong> a substitute for professional advice, including but not limited to medical, legal, financial, psychological, or mental health advice, nor is it a tool for emergency or crisis situations.</p>
+<p>Elunimy is an AI-powered decision-support tool designed to help users obtain clear, practical guidance for everyday situations. The Application uses artificial intelligence to analyze user queries and generate responses based on the input provided.</p>
+<p>The Application is <strong>not</strong> a substitute for professional advice (including but not limited to medical, legal, financial, psychological, or mental health advice), nor is it a tool for emergency or crisis situations.</p>
 
 <h2>3. Eligibility</h2>
 <p>To use the Application, you must:</p>
 <ul>
-  <li>Be at least 16 years old in the European Union or at least 13 years old in other jurisdictions, or the minimum age set by the digital consent law of your country, whichever is higher;</li>
+  <li>Be at least 16 years old (in the European Union) or at least 13 years old (in other jurisdictions), or the minimum age set by the digital consent law of your country, whichever is higher;</li>
   <li>Have the legal capacity to enter into a binding contract under the laws of your jurisdiction;</li>
   <li>Not be prohibited from using the Application under applicable laws.</li>
 </ul>
@@ -63,7 +273,7 @@
 <p>To access the core features of the Application, you must create an account. When registering, you agree to:</p>
 <ul>
   <li>Provide accurate, current, and complete information;</li>
-  <li>Keep your account credentials, including your email and password, confidential and secure;</li>
+  <li>Keep your account credentials (email and password) confidential and secure;</li>
   <li>Notify the Service Provider immediately of any unauthorized access or security breach;</li>
   <li>Take responsibility for all activities that occur under your account.</li>
 </ul>
@@ -80,16 +290,16 @@
 </ul>
 
 <h2>6. Subscription, Payments, and Free Tier</h2>
-<p>The Application operates on a freemium model. Some features are available free of charge with usage limits, including a limited number of AI messages and image uploads, while expanded access requires a paid subscription. Current free tier limits and subscription pricing are displayed in the Application.</p>
+<p>The Application operates on a freemium model. Some features are available free of charge with usage limits (e.g., a limited number of AI messages and image uploads), while expanded access requires a paid subscription. Current free tier limits and subscription pricing are displayed in the Application.</p>
 
 <h3>6.1 Subscription Management</h3>
-<p>Subscriptions are processed and managed through Apple App Store on iOS or Google Play Store on Android, in accordance with their respective terms. Subscription status may also be managed through RevenueCat. You authorize Apple or Google to charge the payment method linked to your store account.</p>
+<p>Subscriptions are processed and managed through Apple App Store (iOS) or Google Play Store (Android), in accordance with their respective terms. You authorize Apple or Google to charge the payment method linked to your store account.</p>
 
 <h3>6.2 Trial Period</h3>
-<p>The Application may offer a trial period before the paid subscription begins. Details of the trial, including duration, payment requirements, and conversion to a paid subscription, are displayed at the point of purchase. By starting a trial, you agree to its specific conditions.</p>
+<p>The Application may offer a trial period before the paid subscription begins. Details of the trial (duration, payment requirements, and conversion to paid subscription) are displayed at the point of purchase. By starting a trial, you agree to its specific conditions.</p>
 
 <h3>6.3 Auto-Renewal</h3>
-<p>Subscriptions automatically renew at the end of each billing cycle unless canceled at least 24 hours before the renewal date, or as otherwise required by the applicable app store rules. The renewal charge is processed by Apple or Google according to your subscription type.</p>
+<p>Subscriptions automatically renew at the end of each billing cycle unless canceled at least 24 hours before the renewal date. The renewal charge is processed by Apple or Google according to your subscription type.</p>
 
 <h3>6.4 Cancellation</h3>
 <p>You may cancel your subscription at any time through your Apple App Store or Google Play Store account settings. Cancellation takes effect at the end of the current billing period; you retain access to premium features until that date.</p>
@@ -98,7 +308,7 @@
 <p>Refund requests are governed by Apple App Store or Google Play Store policies. The Service Provider does not directly process payments and therefore cannot issue refunds independently. Please contact Apple or Google for refund requests.</p>
 
 <h3>6.6 Price Changes</h3>
-<p>The Service Provider reserves the right to change subscription pricing or modify the free tier limits at any time. Any changes will be communicated in advance where required and will not affect the current billing cycle of existing subscribers.</p>
+<p>The Service Provider reserves the right to change subscription pricing or modify the free tier limits at any time. Any changes will be communicated in advance and will not affect the current billing cycle of existing subscribers.</p>
 
 <h2>7. AI-Generated Content and Important Disclaimer</h2>
 
@@ -108,16 +318,16 @@
 
 <p>By using the Application, you understand and acknowledge:</p>
 <ul>
-  <li>AI responses are generated automatically based on AI model behavior and your input; they do not reflect human judgment or expertise;</li>
-  <li>AI may produce false, misleading, biased, or fabricated information, sometimes referred to as "hallucinations";</li>
-  <li>The Application is <strong>not</strong> a substitute for advice from licensed professionals, including doctors, lawyers, financial advisors, mental health professionals, or any other qualified specialists;</li>
+  <li>AI responses are generated automatically based on patterns in training data and your input — they do not reflect human judgment or expertise;</li>
+  <li>AI may produce false, misleading, biased, or fabricated information ("hallucinations");</li>
+  <li>The Application is <strong>not</strong> a substitute for advice from licensed professionals (doctors, lawyers, financial advisors, mental health professionals, or any other qualified specialists);</li>
   <li>The Service Provider does not endorse, guarantee, or assume responsibility for any decisions you make based on AI-generated content.</li>
 </ul>
 
 <h3>7.1 Not for Emergencies or Crisis Situations</h3>
 
 <div class="notice">
-<p><strong>The Application is not intended for use in emergencies or crisis situations.</strong> If you are experiencing a medical emergency, mental health crisis, suicidal thoughts, or any situation requiring immediate assistance, contact your local emergency services, such as 112 in the European Union or 911 in the United States, or a qualified crisis helpline immediately.</p>
+<p><strong>The Application is not intended for use in emergencies or crisis situations.</strong> If you are experiencing a medical emergency, mental health crisis, suicidal thoughts, or any situation requiring immediate assistance, contact your local emergency services (e.g., 112 in the European Union, 911 in the United States) or a qualified crisis helpline immediately.</p>
 </div>
 
 <h3>7.2 Use at Your Own Risk</h3>
@@ -132,42 +342,40 @@
   <li>Use the Application to harm, harass, threaten, or impersonate any person;</li>
   <li>Attempt to circumvent the Application's security measures, usage limits, or content moderation systems;</li>
   <li>Use the Application to create malware, phishing content, spam, or other malicious material;</li>
-  <li>Use automated tools, bots, scrapers, or scripts to access or interact with the Application;</li>
+  <li>Use automated tools (bots, scrapers, scripts) to access or interact with the Application;</li>
   <li>Reverse engineer, copy, or attempt to extract the AI models, system prompts, or training data of the Application;</li>
   <li>Use the Application to violate intellectual property rights of others;</li>
-  <li>Use the Application to provide professional services to third parties, including reselling AI-generated advice as professional advice;</li>
+  <li>Use the Application to provide professional services to third parties (e.g., resell AI-generated advice as professional advice);</li>
   <li>Interfere with or disrupt the Application's infrastructure or servers.</li>
 </ul>
 <p>Violation of these rules may result in immediate suspension or termination of your account, without refund and without prior notice.</p>
 
 <h2>9. User Content</h2>
-<p>You retain ownership of the content you submit through the Application, including text messages and uploaded images. However, by submitting content, you grant the Service Provider a limited, non-exclusive, royalty-free license to process, store, host, transmit, display, and use this content solely to provide the Service to you, including transmitting it to backend infrastructure providers and AI service providers for processing, storage, delivery, display, and analysis.</p>
-<p>Uploaded images may be stored through our backend infrastructure provider as part of chat history and image analysis functionality. Such images may be made accessible through a storage URL for display in the Application and for AI visual analysis.</p>
+<p>You retain ownership of the content you submit through the Application (text messages, uploaded images, etc.). However, by submitting content, you grant the Service Provider a limited, non-exclusive, royalty-free license to process, store, and use this content solely to provide the Service to you (including transmitting it to AI service providers for processing).</p>
 <p>You are solely responsible for the legality, accuracy, and appropriateness of the content you submit. You confirm that you have all necessary rights to submit such content and that it does not infringe upon the rights of any third party.</p>
 
 <h2>10. Intellectual Property</h2>
-<p>All rights, title, and interest in and to the Application, including its software, design, branding, trademarks, logos, and all related materials, are owned by the Service Provider or its licensors. These Terms do not transfer any intellectual property rights to you.</p>
-<p>AI-generated outputs delivered to you through the Application may be used for your personal, non-commercial purposes. The Service Provider makes no warranty regarding the originality, accuracy, suitability, or non-infringement of AI-generated outputs, and you are responsible for ensuring that any use of such outputs complies with applicable laws.</p>
+<p>All rights, title, and interest in and to the Application — including its software, design, branding, trademarks, logos, and all related materials — are owned by the Service Provider or its licensors. These Terms do not transfer any intellectual property rights to you.</p>
+<p>AI-generated outputs delivered to you through the Application may be used for your personal, non-commercial purposes. The Service Provider makes no warranty regarding the originality or non-infringement of AI-generated outputs, and you are responsible for ensuring that any commercial use of such outputs complies with applicable laws.</p>
 
 <h2>11. Third-Party Services</h2>
 <p>The Application relies on third-party services that have their own terms of service. By using the Application, you also agree to the terms of these providers, where applicable:</p>
 <ul>
-  <li><a href="https://openai.com/policies/terms-of-use/" target="_blank" rel="noopener noreferrer">OpenAI</a> — AI response generation and image analysis</li>
-  <li><a href="https://www.apple.com/legal/internet-services/itunes/" target="_blank" rel="noopener noreferrer">Apple App Store</a> — application distribution and in-app purchases on iOS</li>
-  <li><a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer">Google Play Services</a> — application distribution and in-app purchases on Android</li>
+  <li><a href="https://x.ai/legal/terms-of-service/" target="_blank" rel="noopener noreferrer">xAI</a> — AI response generation</li>
+  <li><a href="https://www.apple.com/legal/internet-services/itunes/" target="_blank" rel="noopener noreferrer">Apple App Store</a> — application distribution and in-app purchases (iOS)</li>
+  <li><a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer">Google Play Services</a> — application distribution and in-app purchases (Android)</li>
   <li><a href="https://www.revenuecat.com/terms" target="_blank" rel="noopener noreferrer">RevenueCat</a> — subscription management</li>
   <li><a href="https://mixpanel.com/legal/terms-of-use/" target="_blank" rel="noopener noreferrer">Mixpanel</a> — usage analytics</li>
-  <li><a href="https://legal.xano.com/" target="_blank" rel="noopener noreferrer">Xano</a> — backend infrastructure, database, API services, and uploaded image/file storage</li>
-  <li><a href="https://www.make.com/en/terms-and-conditions" target="_blank" rel="noopener noreferrer">Make</a> — automation and integration services</li>
+  <li><a href="https://legal.xano.com/" target="_blank" rel="noopener noreferrer">Xano</a> — backend infrastructure</li>
   <li><a href="https://resend.com/legal/terms-of-service" target="_blank" rel="noopener noreferrer">Resend</a> — transactional email delivery</li>
 </ul>
-<p>The Service Provider is not responsible for the practices, content, availability, or actions of these third parties. Certain features, including account management, subscriptions, image upload, chat history, and AI image analysis, depend on third-party backend, payment, analytics, email, automation, app store, and AI processing infrastructure.</p>
+<p>The Service Provider is not responsible for the practices, content, or actions of these third parties.</p>
 
 <h2>12. Application Updates and Availability</h2>
 <p>The Service Provider may release updates to the Application from time to time. You agree to install such updates when prompted to ensure continued functionality. Failure to update may result in reduced functionality or incompatibility.</p>
-<p>The Service Provider does not guarantee that the Application will be available at all times or free from errors, bugs, or interruptions. Maintenance, technical issues, or external dependencies, including third-party service outages and internet connectivity, may temporarily affect availability.</p>
-<p>The Service Provider reserves the right to modify, suspend, or discontinue the Application in whole or in part at any time, with or without notice. Upon discontinuation, your license to use the Application terminates automatically.</p>
-<p>The Service Provider is not responsible for charges from your mobile network provider, including roaming or data charges, incurred while using the Application.</p>
+<p>The Service Provider does not guarantee that the Application will be available at all times or free from errors, bugs, or interruptions. Maintenance, technical issues, or external dependencies (e.g., third-party service outages, internet connectivity) may temporarily affect availability.</p>
+<p>The Service Provider reserves the right to modify, suspend, or discontinue the Application (in whole or in part) at any time, with or without notice. Upon discontinuation, your license to use the Application terminates automatically.</p>
+<p>The Service Provider is not responsible for charges from your mobile network provider (including roaming or data charges) incurred while using the Application.</p>
 
 <h2>13. Disclaimer of Warranties</h2>
 <p>To the maximum extent permitted by applicable law, the Application is provided <strong>"AS IS"</strong> and <strong>"AS AVAILABLE"</strong>, without warranties of any kind, whether express, implied, statutory, or otherwise. The Service Provider specifically disclaims all warranties, including but not limited to:</p>
@@ -175,18 +383,18 @@
   <li>Warranties of merchantability or fitness for a particular purpose;</li>
   <li>Warranties of accuracy, reliability, or completeness of AI-generated content;</li>
   <li>Warranties of non-infringement;</li>
-  <li>Warranties that the Application will be uninterrupted, error-free, secure, or available at all times.</li>
+  <li>Warranties that the Application will be uninterrupted, error-free, or secure.</li>
 </ul>
 <p>The Service Provider does not warrant that any results obtained from using the Application will meet your expectations.</p>
-<p>Nothing in these Terms excludes or limits any warranty or right that cannot be excluded or limited under applicable law, including consumer protection laws of the European Union.</p>
+<p>Nothing in these Terms excludes or limits any warranty or right that cannot be excluded or limited under applicable law (including consumer protection laws of the European Union).</p>
 
 <h2>14. Limitation of Liability</h2>
-<p>To the maximum extent permitted by applicable law, the Service Provider, its affiliates, employees, and contractors shall not be liable for any indirect, incidental, special, consequential, exemplary, or punitive damages, including but not limited to loss of profits, data, business opportunities, or goodwill, arising out of or related to your use of the Application, even if advised of the possibility of such damages.</p>
+<p>To the maximum extent permitted by applicable law, the Service Provider, its affiliates, employees, and contractors shall not be liable for any indirect, incidental, special, consequential, exemplary, or punitive damages — including but not limited to loss of profits, data, business opportunities, or goodwill — arising out of or related to your use of the Application, even if advised of the possibility of such damages.</p>
 <p>The total aggregate liability of the Service Provider for any claim arising out of or relating to these Terms or the Application shall not exceed the greater of: (a) the amount you have paid to the Service Provider through the Application in the twelve (12) months preceding the claim, or (b) ten (10) euros.</p>
-<p>Nothing in these Terms excludes or limits liability for: (i) death or personal injury caused by negligence; (ii) fraud or fraudulent misrepresentation; or (iii) any other liability that cannot be excluded or limited under applicable law, including mandatory rights of consumers in the European Union.</p>
+<p>Nothing in these Terms excludes or limits liability for: (i) death or personal injury caused by negligence; (ii) fraud or fraudulent misrepresentation; or (iii) any other liability that cannot be excluded or limited under applicable law (including mandatory rights of consumers in the European Union).</p>
 
 <h2>15. Indemnification</h2>
-<p>You agree to indemnify, defend, and hold harmless the Service Provider, its affiliates, employees, and contractors from and against any claims, damages, losses, liabilities, costs, and expenses, including reasonable legal fees, arising out of or related to:</p>
+<p>You agree to indemnify, defend, and hold harmless the Service Provider, its affiliates, employees, and contractors from and against any claims, damages, losses, liabilities, costs, and expenses (including reasonable legal fees) arising out of or related to:</p>
 <ul>
   <li>Your use of the Application;</li>
   <li>Your violation of these Terms;</li>
@@ -197,22 +405,21 @@
 <h2>16. Termination</h2>
 
 <h3>16.1 Termination by You</h3>
-<p>You may terminate your account and stop using the Application at any time by deleting your account, as described in the <a href="privacy-policy.html">Privacy Policy</a>, or by uninstalling the Application.</p>
+<p>You may terminate your account and stop using the Application at any time by deleting your account (see the <a href="privacy-policy.html">Privacy Policy</a> for details) or by uninstalling the Application.</p>
 
 <h3>16.2 Termination by the Service Provider</h3>
 <p>The Service Provider may suspend or terminate your account and access to the Application at any time, with or without notice, if:</p>
 <ul>
   <li>You violate these Terms or the Acceptable Use Policy;</li>
   <li>The Service Provider is required to do so by law;</li>
-  <li>The Service Provider decides to discontinue the Application;</li>
-  <li>Your use of the Application creates legal, security, operational, or reputational risk for the Service Provider or other users.</li>
+  <li>The Service Provider decides to discontinue the Application.</li>
 </ul>
 
 <h3>16.3 Effect of Termination</h3>
-<p>Upon termination, your right to use the Application ceases immediately. Sections that by their nature should survive termination, including but not limited to Sections 7, 8, 9, 10, 13, 14, 15, 16.3, 18, and 19, shall survive.</p>
+<p>Upon termination, your right to use the Application ceases immediately. Sections that by their nature should survive termination (including but not limited to Sections 9, 10, 13, 14, 15, and 18) shall survive.</p>
 
 <h2>17. Changes to These Terms</h2>
-<p>The Service Provider may update these Terms from time to time. The updated Terms will be posted within the Application and on this page, with a revised "Last updated" date. For material changes, the Service Provider will provide reasonable notice, such as via email or in-app notification, where appropriate.</p>
+<p>The Service Provider may update these Terms from time to time. The updated Terms will be posted within the Application and on this page, with a revised "Last updated" date. For material changes, the Service Provider will provide reasonable notice (e.g., via email or in-app notification).</p>
 <p>Your continued use of the Application after changes take effect constitutes acceptance of the revised Terms. If you do not agree with the updated Terms, you must stop using the Application.</p>
 
 <h2>18. Governing Law and Dispute Resolution</h2>
@@ -233,10 +440,10 @@
 <p>The failure of the Service Provider to enforce any right or provision of these Terms shall not constitute a waiver of that right or provision.</p>
 
 <h3>19.4 Assignment</h3>
-<p>You may not assign or transfer these Terms or your rights under them without prior written consent of the Service Provider. The Service Provider may assign these Terms freely where permitted by applicable law.</p>
+<p>You may not assign or transfer these Terms or your rights under them without prior written consent of the Service Provider. The Service Provider may assign these Terms freely.</p>
 
 <h3>19.5 Language</h3>
-<p>These Terms are provided in English. Any translation is for convenience only. In the event of conflict between translations, the English version shall prevail, except where prohibited by applicable law.</p>
+<p>These Terms are provided in English. Any translation is for convenience only.</p>
 
 <h2>20. Contact</h2>
 <p>If you have any questions, concerns, or requests regarding these Terms, please contact us:</p>
@@ -246,7 +453,10 @@
 </p>
 
 <hr>
-<p class="effective">These Terms and Conditions are effective as of May 12, 2026.</p>
+<p class="effective">These Terms and Conditions are effective as of May 26, 2026.</p>
+
+  </div>
+</div>
 
 </body>
 </html>

@@ -4,36 +4,237 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Privacy Policy — Elunimy</title>
-   <style>
-    html, body { background-color: transparent; }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif;
-      padding: 1.25em 1.25em 3.5em;
-      max-width: 600px;
-      margin: 0 auto;
-      line-height: 1.65;
-      color: #CBD5E1;
-      font-size: 15px;
-      -webkit-font-smoothing: antialiased;
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      min-height: 100%;
+      background: #010610;
     }
-    h1 { font-size: 1.75em; margin-bottom: 0.25em; text-align: center; font-weight: 700; color: #F1F5F9; letter-spacing: -0.4px; }
-    h2 { font-size: 1.05em; margin-top: 1.8em; font-weight: 600; color: #E2E8F0; letter-spacing: -0.2px; }
-    h3 { font-size: 0.95em; margin-top: 1.2em; font-weight: 600; color: #E2E8F0; }
-    strong { color: #F1F5F9; }
-    a { color: #60A5FA; text-decoration: none; }
-    a:hover { color: #93C5FD; }
-    ul { margin-left: 1em; }
-    ul li { margin-bottom: 0.3em; }
-    hr { border: none; border-top: 1px solid #1E293B; margin: 2em 0 1em; }
-    .effective { color: #64748B; font-style: italic; text-align: center; font-size: 0.9em; }
+
+    body {
+      min-height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      color: #b8cfe8;
+      font-size: 15px;
+      line-height: 1.68;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Aurora background layer */
+    .aurora {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .aurora-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(72px);
+    }
+
+    .aurora-orb-1 {
+      width: 70vw;
+      height: 70vw;
+      top: -20%;
+      left: -15%;
+      background: radial-gradient(circle, rgba(30, 64, 175, 0.22) 0%, transparent 65%);
+      animation: drift1 20s ease-in-out infinite alternate;
+    }
+
+    .aurora-orb-2 {
+      width: 55vw;
+      height: 55vw;
+      bottom: -15%;
+      right: -10%;
+      background: radial-gradient(circle, rgba(14, 116, 144, 0.15) 0%, transparent 65%);
+      animation: drift2 26s ease-in-out infinite alternate;
+    }
+
+    .aurora-orb-3 {
+      width: 45vw;
+      height: 45vw;
+      top: 35%;
+      left: 25%;
+      background: radial-gradient(circle, rgba(55, 48, 163, 0.12) 0%, transparent 65%);
+      animation: drift3 30s ease-in-out infinite alternate;
+    }
+
+    .aurora-orb-4 {
+      width: 35vw;
+      height: 35vw;
+      top: 10%;
+      right: 5%;
+      background: radial-gradient(circle, rgba(15, 52, 120, 0.18) 0%, transparent 65%);
+      animation: drift4 17s ease-in-out infinite alternate;
+    }
+
+    @keyframes drift1 {
+      from { transform: translate(0, 0) scale(1); }
+      to   { transform: translate(6vw, 10vh) scale(1.12); }
+    }
+    @keyframes drift2 {
+      from { transform: translate(0, 0) scale(1); }
+      to   { transform: translate(-5vw, -8vh) scale(1.09); }
+    }
+    @keyframes drift3 {
+      from { transform: translate(0, 0) scale(1); }
+      to   { transform: translate(4vw, -12vh) scale(0.93); }
+    }
+    @keyframes drift4 {
+      from { transform: translate(0, 0) scale(1); }
+      to   { transform: translate(-3vw, 7vh) scale(1.06); }
+    }
+
+    /* Glass shimmer overlay */
+    .aurora::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.012) 0%, transparent 50%),
+        linear-gradient(225deg, rgba(30,80,200,0.05) 0%, transparent 50%);
+    }
+
+    /* Page layout */
+    .page {
+      position: relative;
+      z-index: 1;
+      max-width: 660px;
+      margin: 0 auto;
+      padding: 2.5em 1.25em 5em;
+    }
+
+    /* Glass card */
+    .glass-card {
+      background: rgba(4, 14, 36, 0.72);
+      backdrop-filter: blur(32px) saturate(160%);
+      -webkit-backdrop-filter: blur(32px) saturate(160%);
+      border-radius: 22px;
+      border: 1px solid rgba(255, 255, 255, 0.065);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.07),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.3),
+        0 32px 100px rgba(0, 0, 0, 0.65),
+        0 0 80px rgba(20, 60, 180, 0.07);
+      padding: 2.75em 2.25em 2.75em;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Inner glass sheen */
+    .glass-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.12) 30%, rgba(180,210,255,0.15) 60%, transparent 100%);
+    }
+
+    /* Typography */
+    h1 {
+      font-size: 1.9em;
+      font-weight: 700;
+      color: #edf4ff;
+      letter-spacing: -0.5px;
+      text-align: center;
+      line-height: 1.2;
+      margin-bottom: 0.3em;
+    }
+
+    .effective {
+      color: #3d5a7a;
+      font-style: italic;
+      text-align: center;
+      font-size: 0.85em;
+      padding-bottom: 1.75em;
+      margin-bottom: 0.25em;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.045);
+    }
+
+    .effective strong {
+      color: #4e6e96;
+      font-style: normal;
+    }
+
+    h2 {
+      font-size: 0.97em;
+      font-weight: 600;
+      color: #c8dcf5;
+      letter-spacing: -0.1px;
+      margin-top: 2.2em;
+      margin-bottom: 0.6em;
+      padding-bottom: 0.45em;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.048);
+    }
+
+    h3 {
+      font-size: 0.9em;
+      font-weight: 600;
+      color: #8aaed4;
+      margin-top: 1.4em;
+      margin-bottom: 0.4em;
+    }
+
+    p {
+      font-size: 0.92em;
+      line-height: 1.72;
+      margin-bottom: 0.75em;
+      color: #a8c0dc;
+    }
+
+    ul {
+      margin: 0.3em 0 0.8em 1.1em;
+      padding: 0;
+    }
+
+    ul li {
+      font-size: 0.91em;
+      line-height: 1.68;
+      margin-bottom: 0.38em;
+      color: #a0b8d6;
+    }
+
+    strong { color: #ddeeff; font-weight: 600; }
+
+    a {
+      color: #5a9eff;
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+    a:hover { color: #85bbff; }
+
+    hr {
+      border: none;
+      border-top: 1px solid rgba(255, 255, 255, 0.045);
+      margin: 2.2em 0 1.2em;
+    }
   </style>
 </head>
 <body>
 
-<h1>Privacy Policy</h1>
-<p class="effective"><strong>Last updated: May 12, 2026</strong></p>
+<div class="aurora">
+  <div class="aurora-orb aurora-orb-1"></div>
+  <div class="aurora-orb aurora-orb-2"></div>
+  <div class="aurora-orb aurora-orb-3"></div>
+  <div class="aurora-orb aurora-orb-4"></div>
+</div>
 
-<p>This Privacy Policy describes how Elunimy ("Application", "we", "us", or "our") collects, uses, stores, and protects your personal information when you use our mobile application. The Application is developed and operated by Andrej Veremčiuk (hereinafter referred to as "Service Provider"). By using the Application, you agree to the practices described in this Privacy Policy.</p>
+<div class="page">
+  <div class="glass-card">
+
+<h1>Privacy Policy</h1>
+<p class="effective"><strong>Last updated: May 26, 2026</strong></p>
+
+<p>This Privacy Policy describes how Elunimy ("Application", "we", "us", or "our") collects, uses, and protects your personal information when you use our mobile application. The Application is developed and operated by Andrej Veremčiuk (hereinafter referred to as "Service Provider"). By using the Application, you agree to the practices described in this Privacy Policy.</p>
 
 <h2>1. Information We Collect</h2>
 
@@ -43,7 +244,7 @@
   <li><strong>Account information:</strong> name, email address, encrypted password</li>
   <li><strong>Unique user identifier (User ID):</strong> assigned automatically upon registration</li>
   <li><strong>Chat content:</strong> messages and queries you send to the AI assistant</li>
-  <li><strong>Uploaded images:</strong> photos you upload for AI analysis, including related file metadata such as file name, format, size, storage URL, and image URL</li>
+  <li><strong>Uploaded images:</strong> photos you upload for AI analysis</li>
   <li><strong>Subscription information:</strong> subscription status (free or premium) and validity period (managed via Apple App Store or Google Play)</li>
 </ul>
 
@@ -60,61 +261,57 @@
 <h2>2. How We Use Your Information</h2>
 <p>We use the collected information for the following purposes:</p>
 <ul>
-  <li>To provide the Application's core functionality, including AI conversations and chat history</li>
+  <li>To provide the Application's core functionality (AI conversations, chat history)</li>
   <li>To create and maintain your account</li>
-  <li>To process your messages, uploaded images, and queries via AI services</li>
-  <li>To store and deliver uploaded images as part of chat history and image analysis functionality</li>
+  <li>To process your messages and queries via AI services</li>
   <li>To manage your subscription status and access to premium features</li>
   <li>To improve the Application and its features</li>
-  <li>To send essential service notifications, such as account-related, security, or important service updates</li>
+  <li>To send essential service notifications (e.g., account-related, security, important updates)</li>
   <li>To comply with legal obligations</li>
 </ul>
 <p>We do <strong>not</strong> send marketing or advertising emails without your explicit consent.</p>
 
 <h2>3. Use of Artificial Intelligence (AI)</h2>
-<p>The Application uses AI technologies, specifically OpenAI's language and vision-capable models, to generate responses to your queries. This means:</p>
+<p>The Application uses AI technologies (specifically xAI's Grok language model) to generate responses to your queries. This means:</p>
 <ul>
-  <li>The text content of your messages is sent to OpenAI for processing in order to generate AI responses.</li>
-  <li>Uploaded images may be sent to OpenAI for visual analysis.</li>
-  <li>Uploaded images are stored through our backend infrastructure provider, Xano, and may be made accessible through a storage URL for the purpose of image display and AI visual analysis within the Application.</li>
-  <li>OpenAI processes this data according to its own privacy policy and data processing terms.</li>
-  <li>OpenAI's servers may be located outside of the European Economic Area, primarily in the United States. Such transfers are protected by appropriate safeguards, including Standard Contractual Clauses (SCCs), where applicable.</li>
-  <li>According to OpenAI's API data controls, content submitted through the OpenAI API is not used to train or improve OpenAI models by default unless explicitly opted in.</li>
+  <li>The text content of your messages is sent to xAI for processing in order to generate AI responses.</li>
+  <li>Uploaded images may be sent to xAI for visual analysis.</li>
+  <li>xAI processes this data according to its own privacy policy and data processing terms.</li>
+  <li>xAI's servers may be located outside of the European Economic Area (primarily in the United States). Such transfers are protected by Standard Contractual Clauses (SCCs).</li>
+  <li>Please review xAI's API terms for details on how submitted data is used and stored.</li>
 </ul>
-<p>For more information, please review the <a href="https://openai.com/policies/privacy-policy/" target="_blank" rel="noopener noreferrer">OpenAI Privacy Policy</a>.</p>
+<p>For more information, please review the <a href="https://x.ai/legal/privacy-policy/" target="_blank" rel="noopener noreferrer">xAI Privacy Policy</a>.</p>
 
 <h2>4. Third-Party Services</h2>
 <p>The Application uses the following third-party services that have their own privacy policies regarding data handling:</p>
 <ul>
-  <li><a href="https://openai.com/policies/privacy-policy/" target="_blank" rel="noopener noreferrer">OpenAI</a> — AI response generation and image analysis</li>
+  <li><a href="https://x.ai/legal/privacy-policy/" target="_blank" rel="noopener noreferrer">xAI</a> — AI response generation</li>
   <li><a href="https://www.apple.com/legal/privacy/en-ww/" target="_blank" rel="noopener noreferrer">Apple App Store</a> — application distribution and in-app purchases (iOS)</li>
   <li><a href="https://www.google.com/policies/privacy/" target="_blank" rel="noopener noreferrer">Google Play Services</a> — application distribution and in-app purchases (Android)</li>
   <li><a href="https://www.revenuecat.com/privacy" target="_blank" rel="noopener noreferrer">RevenueCat</a> — subscription management</li>
   <li><a href="https://mixpanel.com/legal/privacy-policy/" target="_blank" rel="noopener noreferrer">Mixpanel</a> — usage analytics</li>
-  <li><a href="https://legal.xano.com/privacy-notice" target="_blank" rel="noopener noreferrer">Xano</a> — backend infrastructure, database, API services, and uploaded image/file storage</li>
-  <li><a href="https://www.make.com/en/privacy-notice" target="_blank" rel="noopener noreferrer">Make</a> — automation and integration services</li>
-  <li><a href="https://resend.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer">Resend</a> — transactional email delivery, such as account activation codes and password reset emails</li>
+  <li><a href="https://legal.xano.com/privacy-notice" target="_blank" rel="noopener noreferrer">Xano</a> — backend infrastructure and data storage</li>
+  <li><a href="https://resend.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer">Resend</a> — transactional email delivery (e.g., account activation codes, password reset emails)</li>
 </ul>
 
 <h2>5. Sharing Your Information</h2>
 <p>We do not sell, rent, or trade your personal information. We may disclose your information in the following cases:</p>
 <ul>
-  <li><strong>Service providers:</strong> with trusted third-party service providers listed in Section 4 that help us operate the Application</li>
+  <li><strong>Service providers:</strong> with trusted third-party service providers (listed in section 4) that help us operate the Application</li>
   <li><strong>Legal compliance:</strong> when required by law, court order, or government request</li>
   <li><strong>Protection of rights:</strong> when necessary to protect our rights, your safety, or the safety of others, or to investigate fraud</li>
-  <li><strong>Business transfer:</strong> in the event of a merger, acquisition, or sale of assets, with notice to you where required by law</li>
+  <li><strong>Business transfer:</strong> in the event of a merger, acquisition, or sale of assets, with notice to you</li>
 </ul>
 
 <h2>6. International Data Transfers</h2>
-<p>Some of our service providers, such as OpenAI, Xano, Mixpanel, Resend, Make, RevenueCat, Apple, and Google, may process or store data outside the European Economic Area (EEA), including in the United States. Where required, such transfers are protected by appropriate safeguards, including Standard Contractual Clauses (SCCs) approved by the European Commission or other legally recognized transfer mechanisms.</p>
+<p>Some of our service providers (e.g., xAI, Mixpanel, Resend) operate servers outside the European Economic Area (EEA), primarily in the United States. Such transfers are protected by appropriate safeguards, including Standard Contractual Clauses (SCCs) approved by the European Commission.</p>
 
 <h2>7. Data Retention</h2>
 <ul>
   <li><strong>Account data:</strong> retained while your account is active. Upon account deletion, your data is deleted within 30 days, except where we are required to retain it for legal reasons.</li>
-  <li><strong>Chat history:</strong> retained while your account is active or until you delete it manually, where such deletion functionality is available.</li>
-  <li><strong>Uploaded images:</strong> retained as part of your chat history and image analysis functionality while your account is active, or until deleted as part of account deletion or future image retention controls.</li>
+  <li><strong>Chat history:</strong> retained while your account is active or until you delete it manually.</li>
   <li><strong>Automatically collected data:</strong> retained for up to 24 months, after which it is anonymized or deleted.</li>
-  <li><strong>Subscription information:</strong> retained according to the requirements of Apple, Google, RevenueCat, and applicable law.</li>
+  <li><strong>Subscription information:</strong> retained according to the requirements of Apple/Google and applicable law.</li>
 </ul>
 
 <h2>8. Your Rights (GDPR)</h2>
@@ -136,19 +333,19 @@
 <p>You may request deletion of your account and all associated data at any time:</p>
 <ul>
   <li>By emailing <a href="mailto:info@elunimy.com">info@elunimy.com</a> from your registered email address;</li>
-  <li>Or by uninstalling the Application. Please note that uninstalling the Application does not automatically delete your server-side account data. To fully delete your account data, please contact us.</li>
+  <li>Or by uninstalling the Application (note: uninstalling does not automatically delete your server-side account data — to fully delete it, please contact us).</li>
 </ul>
 <p>Upon receipt of your request, we will permanently delete your data within 30 days, except where retention is required by law.</p>
 
 <h2>10. Children's Privacy</h2>
-<p>The Application is not intended for use by children under the age of 16 in the European Union or under the age of 13 in other jurisdictions. Where applicable national law sets a different minimum age for digital consent, that age applies.</p>
+<p>The Application is not intended for use by children under the age of 16 (in the European Union) or under the age of 13 (in other jurisdictions). Where applicable national law sets a different minimum age for digital consent, that age applies.</p>
 <p>We do not knowingly collect personal information from children. If we become aware that a child has provided us with personal data, we will delete it immediately.</p>
 <p>If you are a parent or guardian and believe your child has provided us with personal information, please contact us at <a href="mailto:info@elunimy.com">info@elunimy.com</a>.</p>
 
 <h2>11. Data Security</h2>
 <p>We take reasonable technical and organizational measures to protect your personal information from unauthorized access, alteration, disclosure, or destruction. These measures include:</p>
 <ul>
-  <li>Encrypted data transmission using HTTPS/TLS</li>
+  <li>Encrypted data transmission (HTTPS/TLS)</li>
   <li>Encrypted password storage</li>
   <li>Restricted server access</li>
   <li>Regular security review</li>
@@ -156,7 +353,7 @@
 <p>However, no system can guarantee 100% security. In the event of a personal data breach, we will notify the relevant supervisory authority and affected users in accordance with GDPR requirements.</p>
 
 <h2>12. Changes to This Privacy Policy</h2>
-<p>We may update this Privacy Policy from time to time. Any changes will be reflected on this page with an updated "Last updated" date. Significant changes will be communicated via email or in-app notification where appropriate. We recommend reviewing this Privacy Policy periodically.</p>
+<p>We may update this Privacy Policy from time to time. Any changes will be reflected on this page with an updated "Last updated" date. Significant changes will be communicated via email or in-app notification. We recommend reviewing this Privacy Policy periodically.</p>
 
 <h2>13. Consent</h2>
 <p>By using the Application, you consent to the practices described in this Privacy Policy. If you do not agree with any of these terms, please do not use the Application.</p>
@@ -169,7 +366,10 @@
 </p>
 
 <hr>
-<p class="effective">This Privacy Policy is effective as of May 12, 2026.</p>
+<p class="effective">This Privacy Policy is effective as of May 26, 2026.</p>
+
+  </div>
+</div>
 
 </body>
 </html>
