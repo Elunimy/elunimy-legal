@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Opening Elunimy…</title>
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    margin: 0; background: #060707; color: #F3F3F4;
+    font-family: -apple-system, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  .card {
+    width: 100%; max-width: 380px; text-align: center;
+    background: linear-gradient(180deg, #17191D, #0E0F12);
+    border: 1px solid rgba(255,255,255,0.08); border-radius: 16px;
+    padding: 40px 30px 34px;
+  }
+  .word { font-size: 18px; font-weight: 600; letter-spacing: 0.4px; color: #F3F3F4; }
+  .lead { margin: 22px 0 0; font-size: 14px; line-height: 1.6; color: #C6C8CC; }
+  .btn {
+    display: block; margin: 26px 0 0; text-decoration: none;
+    background: #F3F3F4; color: #0F0F10; font-size: 15px; font-weight: 600;
+    padding: 15px 20px; border-radius: 12px;
+  }
+  .hint { margin: 20px 0 0; font-size: 12.5px; line-height: 1.6; color: #7E8085; }
+  .spin {
+    width: 26px; height: 26px; margin: 4px auto 0; border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.18); border-top-color: #F3F3F4;
+    animation: spin 0.8s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  @media (prefers-reduced-motion: reduce) { .spin { animation: none; } }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="word">Elunimy</div>
+    <p class="lead">Opening the app…</p>
+    <div class="spin" aria-hidden="true"></div>
+    <a class="btn" href="elunimy://">Open Elunimy</a>
+    <p class="hint">If nothing happens, open the Elunimy app on your device.</p>
+  </div>
+  <script>
+    // Hand off to the app. Target is hardcoded (no query-param redirect), so this
+    // page can never be used as an open redirect. The <a> above is the manual
+    // fallback if the automatic hand-off is blocked.
+    (function () {
+      try { window.location.href = "elunimy://"; } catch (e) {}
+    })();
+  </script>
+</body>
+</html>
