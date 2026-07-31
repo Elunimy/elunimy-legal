@@ -28,6 +28,7 @@
   }
   .tick svg { display: block; }
   .lead { margin: 22px 0 0; font-size: 15px; line-height: 1.6; color: #F3F3F4; font-weight: 600; }
+  .sub { margin: 10px 0 0; font-size: 14px; line-height: 1.6; color: #C6C8CC; }
   .btn {
     display: block; margin: 26px 0 0; text-decoration: none;
     background: #F3F3F4; color: #0F0F10; font-size: 15px; font-weight: 600;
@@ -40,8 +41,9 @@
   <div class="card">
     <!-- The name appears ONCE, on the button. It was on the card four times - wordmark, the
          line under the heading, the button and the hint - which reads as a template. The line
-         that said "tap below to open Elunimy" is gone too: the button says what it does, and a
-         sentence explaining a button is a sentence nobody reads. -->
+         beneath says "the app", not the name again, and it earns its place by saying what the
+         tap actually COMPLETES: the sign-in. Without that, a person could reasonably think the
+         confirmation was the end of it. -->
     <div class="tick" aria-hidden="true">
       <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#0F0F10"
            stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
@@ -49,6 +51,7 @@
       </svg>
     </div>
     <p class="lead">Email confirmed</p>
+    <p class="sub">Tap the button below to open the app and finish signing in.</p>
     <a class="btn" id="open" href="elunimy://login-callback/">Open Elunimy</a>
     <p class="hint">If nothing happens, open the Elunimy app on your device and sign in.</p>
   </div>
