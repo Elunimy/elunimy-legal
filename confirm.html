@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Email confirmed — Elunimy</title>
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    margin: 0; background: #060707; color: #F3F3F4;
+    font-family: -apple-system, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  .card {
+    width: 100%; max-width: 380px; text-align: center;
+    background: linear-gradient(180deg, #17191D, #0E0F12);
+    border: 1px solid rgba(255,255,255,0.08); border-radius: 16px;
+    padding: 40px 30px 34px;
+  }
+  .word { font-size: 18px; font-weight: 600; letter-spacing: 0.4px; color: #F3F3F4; }
+  .tick {
+    width: 56px; height: 56px; margin: 26px auto 0; border-radius: 50%;
+    background: #F3F3F4; display: flex; align-items: center; justify-content: center;
+  }
+  .tick svg { display: block; }
+  .lead { margin: 22px 0 0; font-size: 15px; line-height: 1.6; color: #F3F3F4; font-weight: 600; }
+  .sub { margin: 10px 0 0; font-size: 14px; line-height: 1.6; color: #C6C8CC; }
+  .btn {
+    display: block; margin: 26px 0 0; text-decoration: none;
+    background: #F3F3F4; color: #0F0F10; font-size: 15px; font-weight: 600;
+    padding: 15px 20px; border-radius: 12px;
+  }
+  .hint { margin: 20px 0 0; font-size: 12.5px; line-height: 1.6; color: #7E8085; }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="word">Elunimy</div>
+    <div class="tick" aria-hidden="true">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#0F0F10"
+           stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 12.5 L9.5 18 L20 6.5"/>
+      </svg>
+    </div>
+    <p class="lead">Email confirmed</p>
+    <p class="sub">Tap below to open Elunimy and finish signing in.</p>
+    <a class="btn" id="open" href="elunimy://login-callback/">Open Elunimy</a>
+    <p class="hint">If nothing happens, open the Elunimy app on your device and sign in.</p>
+  </div>
+  <script>
+    // WHY THIS PAGE EXISTS AT ALL.
+    //
+    // Supabase verifies the token and then REDIRECTS. Sending that redirect straight at
+    // "elunimy://" does not work on iOS: Safari refuses to hand an AUTOMATIC redirect to a
+    // custom scheme, and the reader is left looking at "cannot open page" while the link was
+    // perfectly valid. iOS opens an app from a link only when a PERSON taps it — so the
+    // redirect lands here, and the tap happens here.
+    //
+    // The page also has to CARRY THE CREDENTIAL. Supabase appends the result of the exchange
+    // to whatever it redirects to — "?code=..." on the PKCE flow, or "#access_token=..." on
+    // the implicit one — and the app needs it to complete the sign-in. Dropping it would open
+    // the app to a sign-in screen, which is exactly the dead end this is meant to remove.
+    //
+    // SAFE BY CONSTRUCTION: the destination scheme and path are HARD-CODED. Only the query and
+    // fragment travel, so no URL in the address bar can point this page anywhere else — it can
+    // never be used as an open redirect.
+    (function () {
+      var target = "elunimy://login-callback/" + (window.location.search || "") +
+                   (window.location.hash || "");
+      var link = document.getElementById("open");
+      if (link) link.setAttribute("href", target);
+      // Try the hand-off once as well: on Android and on desktop with the app installed this
+      // opens straight away, and where it is refused nothing at all happens - the button
+      // remains, which is the whole point of showing one.
+      try { window.location.href = target; } catch (e) {}
+    })();
+  </script>
+</body>
+</html>
