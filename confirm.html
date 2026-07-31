@@ -23,7 +23,7 @@
   }
   .word { font-size: 18px; font-weight: 600; letter-spacing: 0.4px; color: #F3F3F4; }
   .tick {
-    width: 56px; height: 56px; margin: 26px auto 0; border-radius: 50%;
+    width: 56px; height: 56px; margin: 4px auto 0; border-radius: 50%;
     background: #F3F3F4; display: flex; align-items: center; justify-content: center;
   }
   .tick svg { display: block; }
@@ -39,7 +39,8 @@
 </head>
 <body>
   <div class="card">
-    <div class="word">Elunimy</div>
+    <!-- No wordmark above the tick: the name already appears in the line below, on the button
+         and in the hint. Four times on one small card reads as a template, not a product. -->
     <div class="tick" aria-hidden="true">
       <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#0F0F10"
            stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
