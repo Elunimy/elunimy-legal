@@ -51,7 +51,7 @@
       </svg>
     </div>
     <p class="lead">Email confirmed</p>
-    <p class="sub">Tap the button below to open the app and finish signing in.</p>
+    <p class="sub">Tap the button below to finish signing in.</p>
     <a class="btn" id="open" href="elunimy://login-callback/">Open Elunimy</a>
     <p class="hint">If nothing happens, open the Elunimy app on your device and sign in.</p>
   </div>
@@ -72,11 +72,30 @@
     // SAFE BY CONSTRUCTION: the destination scheme and path are HARD-CODED. Only the query and
     // fragment travel, so no URL in the address bar can point this page anywhere else — it can
     // never be used as an open redirect.
+    //
+    // WHAT ARRIVES HERE CHANGED ON 2026-08-01, and this page did not have to. It used to be
+    // "?code=", the result of the auth server having already verified the token; now the mail
+    // sends the one-time token itself ("?token_hash=…&type=signup") and the APP redeems it.
+    // The reason is measured: the "?code=" form only works while a PKCE pairing made at sign-up
+    // is still alive — a few minutes — so a link opened the next morning confirmed the address
+    // and then failed to sign the reader in. Redeeming the token in the app has no such pairing,
+    // so the link now lasts exactly as long as the token does, which is 24 hours. This page
+    // forwards the query verbatim either way, so it carries both without knowing the difference.
     (function () {
       var target = "elunimy://login-callback/" + (window.location.search || "") +
                    (window.location.hash || "");
       var link = document.getElementById("open");
       if (link) link.setAttribute("href", target);
+      // Take the token out of the address bar once it has been handed to the button. It stays
+      // one-time and short-lived regardless, but there is no reason for it to sit in the
+      // browser's history, or to be copied out of the address bar by someone reading over a
+      // shoulder. The button already holds what it needs.
+      try {
+        if (window.history && window.history.replaceState &&
+            (window.location.search || window.location.hash)) {
+          window.history.replaceState(null, "", window.location.pathname);
+        }
+      } catch (e) {}
       // Try the hand-off once as well: on Android and on desktop with the app installed this
       // opens straight away, and where it is refused nothing at all happens - the button
       // remains, which is the whole point of showing one.
