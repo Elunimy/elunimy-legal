@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex">
-<title>Email confirmed — Elunimy</title>
+<title>Email confirmed - Elunimy</title>
 <style>
   :root { color-scheme: dark; }
   * { box-sizing: border-box; }
@@ -61,23 +61,23 @@
     // Supabase verifies the token and then REDIRECTS. Sending that redirect straight at
     // "elunimy://" does not work on iOS: Safari refuses to hand an AUTOMATIC redirect to a
     // custom scheme, and the reader is left looking at "cannot open page" while the link was
-    // perfectly valid. iOS opens an app from a link only when a PERSON taps it — so the
+    // perfectly valid. iOS opens an app from a link only when a PERSON taps it - so the
     // redirect lands here, and the tap happens here.
     //
     // The page also has to CARRY THE CREDENTIAL. Supabase appends the result of the exchange
-    // to whatever it redirects to — "?code=..." on the PKCE flow, or "#access_token=..." on
-    // the implicit one — and the app needs it to complete the sign-in. Dropping it would open
+    // to whatever it redirects to - "?code=..." on the PKCE flow, or "#access_token=..." on
+    // the implicit one - and the app needs it to complete the sign-in. Dropping it would open
     // the app to a sign-in screen, which is exactly the dead end this is meant to remove.
     //
     // SAFE BY CONSTRUCTION: the destination scheme and path are HARD-CODED. Only the query and
-    // fragment travel, so no URL in the address bar can point this page anywhere else — it can
+    // fragment travel, so no URL in the address bar can point this page anywhere else - it can
     // never be used as an open redirect.
     //
     // WHAT ARRIVES HERE CHANGED ON 2026-08-01, and this page did not have to. It used to be
     // "?code=", the result of the auth server having already verified the token; now the mail
     // sends the one-time token itself ("?token_hash=…&type=signup") and the APP redeems it.
     // The reason is measured: the "?code=" form only works while a PKCE pairing made at sign-up
-    // is still alive — a few minutes — so a link opened the next morning confirmed the address
+    // is still alive - a few minutes - so a link opened the next morning confirmed the address
     // and then failed to sign the reader in. Redeeming the token in the app has no such pairing,
     // so the link now lasts exactly as long as the token does, which is 24 hours. This page
     // forwards the query verbatim either way, so it carries both without knowing the difference.
